@@ -15,8 +15,6 @@ connection.connect(function (err) {
     console.log('connected as id ' + connection.threadId + '\n');
     console.log('Welcome to Bamazon! Your one stop adventure shop!\n');
     viewProducts();
-    
-    //connection.end();
 });
 
 function viewProducts () {
