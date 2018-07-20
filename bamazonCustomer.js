@@ -75,6 +75,7 @@ function orderProduct() {
                     'Total: $' + product.price * response.orderQuantity
                 );
                 updateStock(product.item_id, product.stock_quantity, response.orderQuantity);
+                updateRevenue(product, response.orderQuantity);
             }else{
                 console.log('\n\nInvalid Quantity!\nTry again\n\n');
                 return viewProducts();
@@ -99,6 +100,21 @@ function updateStock(id, stock, quantity) {
         function (err, res) {
             if (err) throw err;
             //console.log('Inventory Updated');
+        }
+    );
+}
+
+function updateRevenue (item, quantity) {
+    const revenue = item.price * quantity;
+    const queryStr = 'UPDATE products SET product_sales = product_sales + ' + revenue + ' WHERE ?';
+    const query = connection.query(
+        queryStr,
+        {
+            item_id: item.item_id
+        },
+        function (err, res) {
+            if(err) throw err;
+            console.log('Updated Revenue!');
         }
     );
 }

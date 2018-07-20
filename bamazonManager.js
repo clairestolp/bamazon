@@ -47,7 +47,7 @@ function viewProducts () {
         if (err) throw (err);
         const productsTable = new Table({
             head: ['id', 'Product Name', 'Department', 'Price', 'Stock'],
-            colWidths: [5, 20, 15, 15, 10]
+            colWidths: [5, 20, 15, 15, 10, 10]
         });
         
         res.forEach(function (val) {
@@ -56,7 +56,7 @@ function viewProducts () {
                 val.product_name,
                 val.department_name,
                 '$' + val.price,
-                val.stock_quantity
+                val.stock_quantity,
             ]
             productsTable.push(arr);
         });

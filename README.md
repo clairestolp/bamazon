@@ -16,7 +16,8 @@ A mock CLI amazon storefront
    * product_name (Name of product)
 
    * department_name
-
+   
+   
    * price (cost to customer)
 
    * stock_quantity (how much of the product is available in stores)
