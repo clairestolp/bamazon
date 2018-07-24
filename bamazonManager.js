@@ -46,7 +46,7 @@ function viewProducts () {
     const query = connection.query('SELECT * FROM products', function (err, res){
         if (err) throw (err);
         const productsTable = new Table({
-            head: ['id', 'Product Name', 'Department', 'Price', 'Stock'],
+            head: ['id', 'Product Name', 'Department', 'Price', 'Stock', 'Sales'],
             colWidths: [5, 20, 15, 15, 10, 10]
         });
         
@@ -57,6 +57,7 @@ function viewProducts () {
                 val.department_name,
                 '$' + val.price,
                 val.stock_quantity,
+                val.product_sales
             ]
             productsTable.push(arr);
         });

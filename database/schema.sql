@@ -32,23 +32,21 @@ USE bamazon;
 ALTER TABLE products 
 ADD COLUMN product_sales DECIMAL(20, 2) NOT NULL DEFAULT 0;
 
-USE bamazon; 
-ALTER TABLE products
-DROP COLUMN product_sales;
-
 USE bamazon;
-SELECT department_name, SUM(product_sales) 
-AS total_sales 
-FROM products 
-GROUP BY department_name;
+SELECT p.department_name, SUM(p.product_sales) AS total_sales, SUM(p.product_sales) - d.over_head_costs total_profit
+FROM products as p
+JOIN departments d ON d.department_name = p.department_name
+GROUP BY p.department_name;
 
-SELECT * FROM departments;
 
-USE bamazon;
-SELECT (product_sales) AS total_sales, SUM(product_sales) - d.over_head_costs AS total_profit
-FROM products AS p, departments AS d
-LEFT JOIN departments ON d.department_name = p.department_name
-GROUP BY d.department_name;
+
+
+
+
+
+
+
+
 
 
 

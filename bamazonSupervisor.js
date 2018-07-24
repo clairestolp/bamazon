@@ -38,32 +38,34 @@ function supervisorMenu() {
     });
 }
 
-/** QUERY 
- * Table displayed: 
- * departemnt_id
- * department_name
- * over_head_costs
- * product_sales
- * total_profit (calculated on the fly)
- * 
- * research: 
- * custom alias MYSQL
- * GROUP BY
- * JOINS
- */
 
 
 function viewSalesByDepartment() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Please enter a department',
-            name: 'department'
-        }
-    ]).then(function (response) {
-        const query = connection.query(
-            'SELECT * FROM departments'
-        )
+    const queryStr = 'SELECT p.item_id, p.department_name, SUM(p.product_sales) AS total_sales, SUM(p.product_sales) - d.over_head_costs total_profit ' +
+    'FROM products as p ' +
+    'JOIN departments d ON d.department_name = p.department_name ' +
+    'GROUP BY p.department_name';
+
+    connection.query(queryStr, function (err, res) {
+        if(err) throw err;
+        let table = new Table({
+            head: ['id', 'Department', 'Total Sales', 'Total Revenue'],
+            colWidths: [5, 20, 20, 20]
+        });
+
+        res.forEach(function (val) {
+            let arr = [
+                val.item_id,
+                val.department_name,
+                val.total_sales,
+                val.total_profit
+            ];
+
+            table.push(arr);
+        });
+
+        console.log(table.toString());
+        connection.end();
     });
 
 }
