@@ -5,8 +5,8 @@ const inquirer = require('inquirer');
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: 'root',
-    password: 'E9$i10n25$',
+    user: 'user',
+    password: 'Passw0rd',
     database: 'bamazon'
 });
 
@@ -53,35 +53,35 @@ function orderProduct() {
             message: 'How many would you like?',
             name: 'orderQuantity'
         }
-    ]).then(function (response) {
+    ]).then(function(response) {
         const query = connection.query(
             'SELECT * FROM products WHERE ?',
             {
                 item_id: response.orderId
             },
             function (err, res) {
-            if (err) throw err;
-            //console.log(res);
-            const product = res[0];
+                if (err) throw err;
+                //console.log(res);
+                const product = res[0];
             
-            if(response.orderQuantity <= product.stock_quantity){
-                console.log(
-                    '\nINVOICE\n' +
-                    '\n\nProduct ID: ' + product.item_id + '\n' +
-                    'Product Name: ' + product.product_name + '\n' +
-                    'Department: ' + product.department_name + '\n' +
-                    'Price: ' + product.price + '\n' + 
-                    'Quantity: ' + response.orderQuantity + '\n\n' +
-                    'Total: $' + product.price * response.orderQuantity
-                );
-                updateStock(product.item_id, product.stock_quantity, response.orderQuantity);
-                updateRevenue(product, response.orderQuantity);
-            }else{
-                console.log('\n\nInvalid Quantity!\nTry again\n\n');
-                return viewProducts();
-            }
+                if(response.orderQuantity <= product.stock_quantity){
+                    console.log(
+                        '\nINVOICE\n' +
+                        '\n\nProduct ID: ' + product.item_id + '\n' +
+                        'Product Name: ' + product.product_name + '\n' +
+                        'Department: ' + product.department_name + '\n' +
+                        'Price: ' + product.price + '\n' + 
+                        'Quantity: ' + response.orderQuantity + '\n\n' +
+                        'Total: $' + product.price * response.orderQuantity
+                    );
+                    updateStock(product.item_id, product.stock_quantity, response.orderQuantity);
+                    updateRevenue(product, response.orderQuantity);
+                }else{
+                    console.log('\n\nInvalid Quantity!\nTry again\n\n');
+                    return viewProducts();
+                }
             
-        connection.end();
+            connection.end();
         });
     });
 }
@@ -99,7 +99,6 @@ function updateStock(id, stock, quantity) {
         ],
         function (err, res) {
             if (err) throw err;
-            //console.log('Inventory Updated');
         }
     );
 }
@@ -107,7 +106,7 @@ function updateStock(id, stock, quantity) {
 function updateRevenue (item, quantity) {
     const revenue = item.price * quantity;
     const queryStr = 'UPDATE products SET product_sales = product_sales + ' + revenue + ' WHERE ?';
-    const query = connection.query(
+    connection.query(
         queryStr,
         {
             item_id: item.item_id

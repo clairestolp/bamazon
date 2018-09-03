@@ -5,8 +5,8 @@ const inquirer = require('inquirer');
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: 'root',
-    password: 'E9$i10n25$',
+    user: 'user',
+    password: 'Passw0rd',
     database: 'bamazon'
 });
 
@@ -43,7 +43,7 @@ function manageProducts() {
 }
 
 function viewProducts () {
-    const query = connection.query('SELECT * FROM products', function (err, res){
+    connection.query('SELECT * FROM products', function (err, res){
         if (err) throw (err);
         const productsTable = new Table({
             head: ['id', 'Product Name', 'Department', 'Price', 'Stock', 'Sales'],
@@ -68,7 +68,7 @@ function viewProducts () {
 }
 
 function lowInventory () {
-    const query = connection.query(
+    connection.query(
         'SELECT * FROM products WHERE stock_quantity BETWEEN 0 AND 5',
         function (err, res) {
             if (err) throw err;
@@ -106,7 +106,7 @@ function addInventory () {
         }
     ]).then(function (response){
         const queryStr = 'UPDATE products SET stock_quantity = stock_quantity + ' + response.quantity + ' WHERE ?' 
-        const query = connection.query(
+        connection.query(
             queryStr,
             [  
                 {
@@ -143,7 +143,7 @@ function addProduct() {
             name: 'quantity'
         }
     ]).then(function (response) {
-        const query = connection.query(
+        connection.query(
             'INSERT INTO products SET ?',
             {
                 product_name: response.itemName,

@@ -5,8 +5,8 @@ const inquirer = require('inquirer');
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: 'root',
-    password: 'E9$i10n25$',
+    user: 'user',
+    password: 'Passw0rd',
     database: 'bamazon'
 });
 
@@ -25,7 +25,6 @@ function supervisorMenu() {
             name: 'option'
         }
     ]).then(function (response) {
-
         switch (response.option) {
             case 'View Product Sales by Department':
                 viewSalesByDepartment();
@@ -34,10 +33,8 @@ function supervisorMenu() {
                 newDepartment();
                 break;
         }
-
     });
 }
-
 
 
 function viewSalesByDepartment() {
@@ -83,8 +80,8 @@ function newDepartment () {
             name: 'overhead'
         }
     ]).then(function (response) {
-        const query = connection.query(
-            'INSERT INTO departments SET ?',
+        connection.query(
+            'INSERT INTO departments (department_name, over_head_costs) VALUES (?)',
             {
                 department_name: response.departmentName,
                 over_head_costs: response.overhead
