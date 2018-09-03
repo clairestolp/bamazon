@@ -1,7 +1,17 @@
 # bamazon
-A mock CLI amazon storefront
+A mock CLI amazon storefront with a customer interface, a manager interface, and a supervisor interface
 
-## Instructions
+## Demos
+
+#### bamazonCustomer.js
+![Demo1]https://github.com/clairestolp/bamazon/blob/master/demo/demo-customer.gif?raw=true
+
+## Technologies Used
+* JavaScript
+* NodeJS
+* MySql
+* cli-table
+* inquirer
 
 ### Challenge #1: Customer View (Minimum Requirement)
 
