@@ -4,7 +4,17 @@ A mock CLI amazon storefront with a customer interface, a manager interface, and
 ## Demos
 
 #### bamazonCustomer.js
-![Demo1](https://github.com/clairestolp/bamazon/blob/master/demo/demo-customer.gif?raw=true)
+
+<img width="50%" src="https://github.com/clairestolp/bamazon/blob/master/demo/demo-customer.gif?raw=true">
+
+#### bamazonManager.js
+
+<img width="50%" src="https://github.com/clairestolp/bamazon/blob/master/demo/demo-manager.gif?raw=true">
+
+#### bamazonSupervisor.js
+
+<img width="50%" src="https://github.com/clairestolp/bamazon/blob/master/demo/demo-supervisor.gif?raw=true">
+
 
 ## Technologies Used
 * JavaScript
