@@ -62,5 +62,7 @@ Displays a set of menu options
   `Create a New Department` prompts the user to enter a department name and the overhead costs then creates a new department in the database.
   
   
+### known Issues: 
 
+When a user creates a new department and selects `View Sales by Department` The new department is not displayed on the list because no new products have been added in the system so the program cannot calculate the total overhead, total sales, or total revenue values. Once a product has been added via the manager view, the new department will be displayed when `View Sales by Department` is selected.
 
