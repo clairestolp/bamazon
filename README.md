@@ -24,7 +24,7 @@ A mock CLI amazon storefront with a customer interface, a manager interface, and
 * inquirer
 
 ## Goals
-This small web was created to fulfill the requirements of the UNC Chapel Hill Coding Bootcamp and demonstrates an understanding of MySql. The Customer View reads data from the database and updates entries. The Manager View demonstrates creating and inserting new data, updating the table, and manipulating data to show it dynamically.  The Supervisor View utilizes joins to grab data from two different tables, manipulate the data, and create a new table based on it. Another target of this assignment was to create a CLI application that utilizes tables to show data in the command line.
+This small web app was created to fulfill the requirements of the UNC Chapel Hill Coding Bootcamp and demonstrates an understanding of MySql. The Customer View reads data from the database and updates entries. The Manager View demonstrates creating and inserting new data, updating the table, and manipulating data to show it dynamically.  The Supervisor View utilizes joins to grab data from two different tables, manipulate the data, and create a new table based on it. Another target of this assignment was to create a CLI application that utilizes tables to show data in the command line.
 
 ### Customer View
 
